@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="file:/D:/TEI/MCLAB/MPhil/MPEG-7/m7_validator_files/Mpeg7-2001.xsd" uri="xml-resources/jaxb/MPEG7Schema/Mpeg7-2001.xsd"/>
+    <system systemId="file:/D:/TEI/MCLAB/MPhil/MPEG-7/m7_validator_files/visual-2001.xsd" uri="xml-resources/jaxb/MPEG7Schema/visual-2001.xsd"/>
+    <system systemId="file:/D:/TEI/MCLAB/MPhil/MPEG-7/m7_validator_files/audio-2001.xsd" uri="xml-resources/jaxb/MPEG7Audio/audio-2001.xsd"/>
+    <system systemId="file:/D:/TEI/MCLAB/MPhil/MPEG-7/m7_validator_files/mds-2001.xsd" uri="xml-resources/jaxb/MPEG7MDS/mds-2001.xsd"/>
+    <system systemId="file:/D:/TEI/MCLAB/MPhil/MPEG-7/m7_validator_files/xml-1998.xsd" uri="xml-resources/jaxb/MPEG7MDS/xml-1998.xsd"/>
+    <system systemId="file:/D:/TEI/MCLAB/MPhil/MPEG-7/m7_validator_files/ddl-2001.xsd" uri="xml-resources/jaxb/MPEG7DDL/ddl-2001.xsd"/>
+</catalog>
