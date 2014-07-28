@@ -34,13 +34,14 @@ public class MP7Generator {
 
     private static final Logger logger = Logger.getLogger(MP7Generator.class);
     protected X3DResourceDetail x3dResource;
+    protected String outputPath;
     protected HashMap<String, String> extrusionParamMap, ifsParamMap, ilsParamMap, histograms, scalableColors, surfeatures;
 
     protected Transformer transformer;
     protected TransformerFactory factory;
     protected Source xslStream;
 
-    public MP7Generator(X3DResourceDetail x3dResource, HashMap<String, String> ilsParamMap, HashMap<String, String> ifsParamMap, HashMap<String, String> extrusionParamMap, HashMap<String, String> histograms, HashMap<String, String> scalableColors, HashMap<String, String> surfeatures, String xslSource) throws IOException {
+    public MP7Generator(X3DResourceDetail x3dResource, String outputPath, HashMap<String, String> ilsParamMap, HashMap<String, String> ifsParamMap, HashMap<String, String> extrusionParamMap, HashMap<String, String> histograms, HashMap<String, String> scalableColors, HashMap<String, String> surfeatures, String xslSource) throws IOException {
         this.x3dResource = x3dResource;
         this.extrusionParamMap = extrusionParamMap;
         this.ifsParamMap = ifsParamMap;
@@ -49,7 +50,9 @@ public class MP7Generator {
         this.scalableColors = scalableColors;
         this.surfeatures = surfeatures;
         this.factory = TransformerFactory.newInstance();
-        this.xslStream = new StreamSource(MP7Generator.class.getResourceAsStream("org/exist/xquery/modules/mpeg7/transformation/xsl/" + xslSource));
+        this.xslStream = new StreamSource(MP7Generator.class.getResourceAsStream("/org/exist/xquery/modules/mpeg7/transformation/xsl/" + xslSource));
+        this.outputPath = outputPath;
+        
         //this.xslStream = new StreamSource(new ByteArrayInputStream(FileUtils.readFileToByteArray(new File(xslSource))));
     }
 
@@ -105,20 +108,25 @@ public class MP7Generator {
             StreamSource x3dInput = new StreamSource(new ByteArrayInputStream(FileUtils.readFileToByteArray(x3dSource)));
 
             //Where to write MPEG-7 file
-            File mp7File = new File(x3dResource.parentPath + x3dResource.resourceName + ".mp7");
-            String mp7Output = mp7File.toURI().toString();
+            File mp7File;
+            if (this.outputPath.length() > 0){
+                mp7File = new File(this.outputPath + x3dResource.resourceName + ".mp7");
+            }
+            else{
+                    mp7File = new File(x3dResource.resourceName + ".mp7");
+            }            
 
             //Setup transformer options
             this.transformer = this.factory.newTransformer(this.xslStream);
             this.transformer.setErrorListener(new TransformationErrorListener());
             setTranformerParameters();
-            StreamResult sr = new StreamResult(new File(mp7Output));
+            StreamResult sr = new StreamResult(mp7File);
             this.transformer.transform(x3dInput, sr);
 
             Validator mpeg7Validator = new Validator(mp7File);
             Boolean isValid = mpeg7Validator.isValid();
             // if (isValid) {
-            System.out.println("File: " + mp7Output + "is valid: "+ isValid);
+            //System.out.println("File: " + mp7Output + "is valid: "+ isValid);
             //}            
         } catch (TransformerException ex) {
             System.out.println("TransformerException: " + ex);
@@ -168,23 +176,23 @@ public class MP7Generator {
 
 class TransformationErrorListener implements ErrorListener {
 
-    private static final Logger logger = Logger.getLogger(TransformationErrorListener.class);
+//    private static final Logger logger = Logger.getLogger(TransformationErrorListener.class);
 
     @Override
     public void warning(TransformerException e) throws TransformerException {
-        logger.warn("TransformerException: ", e);
+        System.out.println("TransformerException: "+ e);
         report(e);
     }
 
     @Override
     public void error(TransformerException e) throws TransformerException {
-        logger.error("TransformerException: ", e);
+        System.out.println("TransformerException: "+ e);
         report(e);
     }
 
     @Override
     public void fatalError(TransformerException e) throws TransformerException {
-        logger.fatal("TransformerException: ", e);
+        System.out.println("TransformerException: "+ e);
         report(e);
     }
 
@@ -197,7 +205,7 @@ class TransformationErrorListener implements ErrorListener {
             factory.setNamespaceAware(true);
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            String docSource = "/usr/local/exist2.2/tools/wrapper/logs/annotation/transformErrors.xml";
+            String docSource = "transformErrors.xml";
             File f = new File(docSource);
             Document doc;
             Element root;
@@ -245,15 +253,15 @@ class TransformationErrorListener implements ErrorListener {
             transformer.transform(domSource, streamResult);
 
         } catch (ParserConfigurationException ex) {
-            logger.error("ParserConfigurationException: ", ex);
+            System.out.println("ParserConfigurationException: "+ ex);
         } catch (SAXException ex) {
-            logger.error("SAXException: ", ex);
+            System.out.println("SAXException: "+ ex);
         } catch (IOException ex) {
-            logger.error("IOException: ", ex);
+            System.out.println("IOException: "+ ex);
         } catch (TransformerConfigurationException ex) {
-            logger.error("TransformerConfigurationException: ", ex);
+            System.out.println("TransformerConfigurationException: "+ ex);
         } catch (TransformerException ex) {
-            logger.error("TransformerException: ", ex);
+            System.out.println("TransformerException: "+ ex);
         }
     }
 

@@ -76,8 +76,8 @@ public class ExtrusionToIFSFilter {
         // transform the extrusion to an IndexedTriangleSet
         initializeExtrusion();
         if (!calculateSCP()) {       // check the output -
-            //System.out.println("Geometry poorly defined");
-            logger.warn("Geometry poorly defined");
+            System.out.println("Geometry poorly defined");
+//            logger.warn("Geometry poorly defined");
         }
         createExtrusionCoordinates();
         createExtrusionIndices();
@@ -91,13 +91,13 @@ public class ExtrusionToIFSFilter {
 
         switch (max_poly_size) {
             case 0:
-                logger.warn("No valid polygons found: Zero sized polygons");
-            //System.out.println("No valid polygons found: Zero sized polygons");
+//                logger.warn("No valid polygons found: Zero sized polygons");
+            System.out.println("No valid polygons found: Zero sized polygons");
 
             case 1:
             case 2:
-                logger.warn("No valid polygons. Max size " + max_poly_size);
-            //System.out.println("No valid polygons. Max size " + max_poly_size);
+//                logger.warn("No valid polygons. Max size " + max_poly_size);
+            System.out.println("No valid polygons. Max size " + max_poly_size);
         }
 
         StringBuilder coordinatesBuffer = new StringBuilder();
@@ -488,8 +488,8 @@ public class ExtrusionToIFSFilter {
             y[0].sub(direction, spines[0]);
 
             if (!norm(y[0])) {
-                //System.out.println("Error normalizing Y in Extrusion");
-                logger.warn("Error normalizing Y in Extrusion");
+                System.out.println("Error normalizing Y in Extrusion");
+//                logger.warn("Error normalizing Y in Extrusion");
             }
 
             // Create an initial x[0]

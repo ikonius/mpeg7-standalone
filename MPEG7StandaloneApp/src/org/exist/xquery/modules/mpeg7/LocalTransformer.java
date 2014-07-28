@@ -35,12 +35,12 @@ public class LocalTransformer {
             outputPath = args[2];
         } else {
             inputX3DPath = "E:\\X3D\\content\\examples\\Vrml2.0Sourcebook\\Chapter13-PointsLinesFaces\\";
-            inputX3DFile = "Figure13.15VaultedCeilingPiece.x3d";
-            outputPath = "E:\\X3D\\content\\examples\\Vrml2.0Sourcebook\\Chapter13-PointsLinesFaces\\";
+            inputX3DFile = "Figure13.12IndexedFaceSetCube.x3d";
+            outputPath = ""; //IF LEFT BLANK IT WILL BE STORED IN THE PROJECT CLASSPATH!!!!! - Otherwise use something like: //"E:\\X3D\\content\\examples\\Vrml2.0Sourcebook\\Chapter13-PointsLinesFaces\\";
         }
         try {
 
-            X3DResourceDetail resource = new X3DResourceDetail(removeExtension(inputX3DFile), inputX3DFile, inputX3DPath + inputX3DFile);
+            X3DResourceDetail resource = new X3DResourceDetail(removeExtension(inputX3DFile), inputX3DFile, inputX3DPath);
 
             String xslSource = "mpeg7_annotation.xsl";
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -72,7 +72,7 @@ public class LocalTransformer {
             ExtrusionDetector extrusionDetector = new ExtrusionDetector(doc);
             //extrusionDetector.processShapes(); 
             TextureDetector textureDetector = new TextureDetector(doc, resource.parentPath);
-            MP7Generator mp7Generator = new MP7Generator(resource, ilsDetector.getParamMap(), ifsDetector.getParamMap(), extrusionDetector.getParamMap(), textureDetector.getHistograms(), textureDetector.getScalableColors(), textureDetector.getSURF(), xslSource);
+            MP7Generator mp7Generator = new MP7Generator(resource, outputPath, ilsDetector.getParamMap(), ifsDetector.getParamMap(), extrusionDetector.getParamMap(), textureDetector.getHistograms(), textureDetector.getScalableColors(), textureDetector.getSURF(), xslSource);
             mp7Generator.generateDescription();
 
             //logger.debug("No of MPEG-7 files: " + mpeg7counter); //debugging

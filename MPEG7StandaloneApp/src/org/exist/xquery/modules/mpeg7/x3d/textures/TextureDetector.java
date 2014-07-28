@@ -191,7 +191,8 @@ public class TextureDetector {
                     }
                     break;
                 } catch (IOException ex) {
-                    logger.warn(ex);
+//                    logger.warn(ex);
+                    System.out.println(ex);
                 }
             }
 

@@ -28,7 +28,8 @@ public class CommonUtils {
         Iterator it = mp.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry pairs = (Map.Entry) it.next();
-            logger.info(pairs.getKey() + " : " + pairs.getValue());
+//            logger.info(pairs.getKey() + " : " + pairs.getValue());
+            System.out.println(pairs.getKey() + " : " + pairs.getValue());
             it.remove(); // avoids a ConcurrentModificationException
         }
     }

@@ -148,9 +148,9 @@ public class ExtrusionDetector extends GeometryDetector {
             resultedExtrBBoxList.add(ExtrBBox);
             resultedExtrExtractionList.add(ExtrShape);
 
-            int vocabularySize = 32;
-            ShapeGoogleExtraction shExtraction = new ShapeGoogleExtraction(ifsFilter.getIFSTranslatedData()[0], ifsFilter.getIFSTranslatedData()[1], vocabularySize);
-            resultedSGDExtractionList.add(shExtraction.getStringRepresentation());
+//            int vocabularySize = 32;
+//            ShapeGoogleExtraction shExtraction = new ShapeGoogleExtraction(ifsFilter.getIFSTranslatedData()[0], ifsFilter.getIFSTranslatedData()[1], vocabularySize);
+//            resultedSGDExtractionList.add(shExtraction.getStringRepresentation());
 
         }
         for (int i = 0; i < resultedExtrExtractionList.size(); i++) {
@@ -166,13 +166,13 @@ public class ExtrusionDetector extends GeometryDetector {
             this.getParamMap().put("extrusionBBoxParams", ExtrBBoxStringBuilder.toString());
         }
 
-        for (int i = 0; i < resultedSGDExtractionList.size(); i++) {
-            SGDStringBuilder.append(resultedSGDExtractionList.get(i));
-            SGDStringBuilder.append("#");
-        }
-        if (SGDStringBuilder.length() > 0) {
-            this.getParamMap().put("SGD", SGDStringBuilder.toString());
-        }
+//        for (int i = 0; i < resultedSGDExtractionList.size(); i++) {
+//            SGDStringBuilder.append(resultedSGDExtractionList.get(i));
+//            SGDStringBuilder.append("#");
+//        }
+//        if (SGDStringBuilder.length() > 0) {
+//            this.getParamMap().put("SGD", SGDStringBuilder.toString());
+//        }
     }
 
     @Override

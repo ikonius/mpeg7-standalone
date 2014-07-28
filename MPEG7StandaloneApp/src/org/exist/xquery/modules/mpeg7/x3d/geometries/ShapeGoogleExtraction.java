@@ -34,7 +34,8 @@ public class ShapeGoogleExtraction {
             this.bof = this.shParts[0].toString();
             this.ssBof = this.shParts[1].toString();       
         } catch (MWException ex) {
-            logger.error(ex);
+//            logger.error(ex);
+            System.out.println(ex);
         }
     }
 
