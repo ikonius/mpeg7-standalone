@@ -9,7 +9,7 @@
       <MultimediaContent xsi:type="MultimediaType" id="testShapeGoogle.x3d">
          <Multimedia>
             <MediaLocator>
-               <MediaUri>E:\X3D\content\ToUpload\/testShapeGoogle.x3d</MediaUri>
+               <MediaUri>C:\/testShapeGoogle.x3d</MediaUri>
             </MediaLocator>
          </Multimedia>
       </MultimediaContent>
