@@ -112,9 +112,9 @@ public class ILSDetector extends GeometryDetector {
             resultedIFSExtractionList.add(resultedExtraction);
 
             //ShapeGoogleExtraction
-//            int vocabularySize = 32;
-//            ShapeGoogleExtraction shExtraction = new ShapeGoogleExtraction(points, coordIndex, vocabularySize);
-//            resultedSGDExtractionList.add(shExtraction.getStringRepresentation());
+            int vocabularySize = 32;
+            ShapeGoogleExtraction shExtraction = new ShapeGoogleExtraction(points, coordIndex, vocabularySize);
+            resultedSGDExtractionList.add(shExtraction.getStringRepresentation());
         }
         for (int i = 0; i < resultedIFSExtractionList.size(); i++) {
             IFSStringBuilder.append(resultedIFSExtractionList.get(i));
@@ -124,13 +124,13 @@ public class ILSDetector extends GeometryDetector {
             this.getParamMap().put("ILSPointsExtraction", IFSStringBuilder.toString());
         }
 
-//        for (int i = 0; i < resultedSGDExtractionList.size(); i++) {
-//            SGDStringBuilder.append(resultedSGDExtractionList.get(i));
-//            SGDStringBuilder.append("#");
-//        }
-//        if (SGDStringBuilder.length() > 0) {
-//            this.getParamMap().put("SGD", SGDStringBuilder.toString());
-//        }
+        for (int i = 0; i < resultedSGDExtractionList.size(); i++) {
+            SGDStringBuilder.append(resultedSGDExtractionList.get(i));
+            SGDStringBuilder.append("#");
+        }
+        if (SGDStringBuilder.length() > 0) {
+            this.getParamMap().put("SGD", SGDStringBuilder.toString());
+        }
     }
 
     @Override

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Mpeg7 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:mpeg:mpeg7:schema:2001" xmlns:mpeg7="urn:mpeg:mpeg7:schema:2001" xmlns:str="http://exslt.org/strings" xmlns:functx="http://www.functx.com" xmlns:math="http://exslt.org/math" xmlns:xalan="http://xml.apache.org/xalan">
+   <Description xsi:type="ContentEntityType">
+      <DescriptionMetadata>
+         <Version>3.0</Version>
+         <PrivateIdentifier>http://www.web3d.org/x3d/content/examples/Vrml2.0Sourcebook/Chapter13-PointsLinesFaces/Figure13.12IndexedFaceSetCube.x3d</PrivateIdentifier>
+         <Profile3D>Interchange</Profile3D>
+      </DescriptionMetadata>
+      <MultimediaContent xsi:type="MultimediaType" id="testShapeGoogle.x3d">
+         <Multimedia>
+            <MediaLocator>
+               <MediaUri>E:\X3D\content\ToUpload\/testShapeGoogle.x3d</MediaUri>
+            </MediaLocator>
+         </Multimedia>
+      </MultimediaContent>
+   </Description>
+   <Description xsi:type="ContentEntityType">
+      <MultimediaContent xsi:type="MultimediaCollectionType">
+         <StructuredCollection>
+            <Collection xsi:type="ContentCollectionType" id="Transformation_Paths">
+               <ContentCollection name="Group_1">
+                  <Content xsi:type="MultimediaType">
+                     <Multimedia>
+                        <MediaLocator>
+                           <MediaUri>/X3D/Scene/Group[1]</MediaUri>
+                        </MediaLocator>
+                     </Multimedia>
+                  </Content>
+               </ContentCollection>
+            </Collection>
+            <Collection xsi:type="DescriptorCollectionType" id="Geometries">
+               <DescriptorCollection id="Geometry_d10e16" name="Shape_1">
+                  <Descriptor xsi:type="BoundingBox3DType">
+                     <BoundingBox3DSize BoxWidth="1.39471" BoxHeight="1.02744" BoxDepth="3.9159100000000002"/>
+                     <BoundingBox3DCenter BoxCenterW="0.0003850000000000242" BoxCenterH="0.34118" BoxCenterD="0.5550449999999999"/>
+                  </Descriptor>
+                  <Descriptor xsi:type="Geometry3DType">
+                     <Geometry3D ObjectType="IndexedFaceSet" convex="true" creaseAngle="0">
+                        <DominantColor3D xsi:type="DominantColorType">
+                           <SpatialCoherency>0</SpatialCoherency>
+                           <Value>
+                              <Percentage>1</Percentage>
+                              <Index>0 128 255</Index>
+                           </Value>
+                        </DominantColor3D>
+                        <Shape3D xsi:type="Shape3DType" bitsPerBin="12">
+                           <Spectrum>0 0 0 18 18 5 4 31 12 8 42 53 31 60 52 75 51 24 45 57 61 98 91 425 536 455 484 275 227 101 100 53 77 34 16 18 36 25 16 32 5 6 25 32 2 8 7 7 7 4 2 5 5 4 0 2 5 3 2 0 0 1 6 2 0 1 0 3 0 0 1 4 16 6 17 5 8 13 9 17 8 7 0 0 2 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0</Spectrum>
+                           <PlanarSurfaces>0</PlanarSurfaces>
+                           <SingularSurfaces>89</SingularSurfaces>
+                        </Shape3D>
+                        <ShapeGoogle xsi:type="ShapeGoogleType">
+                           <Vocabulary size="32" location="vocab32.mat"/>
+                           <BagOfFeatures>null</BagOfFeatures>
+                           <SpatiallySensitiveBagOfFeatures>null</SpatiallySensitiveBagOfFeatures>
+                        </ShapeGoogle>
+                     </Geometry3D>
+                  </Descriptor>
+               </DescriptorCollection>
+               <DescriptorCollectionRef href="#Shape_1"/>
+            </Collection>
+            <Collection xsi:type="DescriptorCollectionType" id="Viewpoints">
+               <DescriptorCollection id="Viewpoint_d10e14" name="Viewpoint_1">
+                  <Descriptor xsi:type="Viewpoint3DType">
+                     <Viewpoint3D description="5m away" isAnimated="false" fieldOfView="0.7854"/>
+                     <Viewpoint3DPosition>
+                        <Orientation>0 0 1 0</Orientation>
+                        <Position>0 0 5</Position>
+                        <CenterOfRotation>0 0 0</CenterOfRotation>
+                     </Viewpoint3DPosition>
+                  </Descriptor>
+               </DescriptorCollection>
+               <DescriptorCollectionRef href="#Viewpoint_1"/>
+            </Collection>
+            <Relationships/>
+         </StructuredCollection>
+      </MultimediaContent>
+   </Description>
+</Mpeg7>
