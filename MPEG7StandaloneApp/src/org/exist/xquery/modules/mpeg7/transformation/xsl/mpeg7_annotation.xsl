@@ -1,12 +1,12 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="urn:mpeg:mpeg7:schema:2001" xmlns:mpeg7="urn:mpeg:mpeg7:schema:2001" xmlns:str="http://exslt.org/strings" xmlns:functx="http://www.functx.com" xmlns:math="http://exslt.org/math" xmlns:xalan="http://xml.apache.org/xalan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="urn:mpeg:mpeg7:schema:2001 Mpeg7-2001.xsd">
-    <xsl:import href="metadata.xsl" xml:base="src/org/exist/xquery/modules/mpeg7/transformation/xsl/"/>
-    <xsl:import href="content_collections.xsl" xml:base="src/org/exist/xquery/modules/mpeg7/transformation/xsl/"/>
-    <xsl:import href="textures.xsl" xml:base="src/org/exist/xquery/modules/mpeg7/transformation/xsl/"/>
-    <xsl:import href="interactivity.xsl" xml:base="src/org/exist/xquery/modules/mpeg7/transformation/xsl/"/>
-    <xsl:import href="viewpoints.xsl" xml:base="src/org/exist/xquery/modules/mpeg7/transformation/xsl/"/>
-    <xsl:import href="geometries.xsl" xml:base="src/org/exist/xquery/modules/mpeg7/transformation/xsl/"/>
-    <xsl:import href="lighting.xsl" xml:base="src/org/exist/xquery/modules/mpeg7/transformation/xsl/"/>
-    <xsl:import href="relationships.xsl" xml:base="src/org/exist/xquery/modules/mpeg7/transformation/xsl/"/>
+    <xsl:import href="metadata.xsl" xml:base="http://54.72.206.163/exist/apps/annotation/modules/"/>
+    <xsl:import href="content_collections.xsl" xml:base="http://54.72.206.163/exist/apps/annotation/modules/"/>
+    <xsl:import href="textures.xsl" xml:base="http://54.72.206.163/exist/apps/annotation/modules/"/>
+    <xsl:import href="interactivity.xsl" xml:base="http://54.72.206.163/exist/apps/annotation/modules/"/>
+    <xsl:import href="viewpoints.xsl" xml:base="http://54.72.206.163/exist/apps/annotation/modules/"/>
+    <xsl:import href="geometries.xsl" xml:base="http://54.72.206.163/exist/apps/annotation/modules/"/>
+    <xsl:import href="lighting.xsl" xml:base="http://54.72.206.163/exist/apps/annotation/modules/"/>
+    <xsl:import href="relationships.xsl" xml:base="http://54.72.206.163/exist/apps/annotation/modules/"/>
     <xsl:param name="filename"/>
     <xsl:param name="IFSPointsExtraction"/>
     <xsl:param name="ILSPointsExtraction"/>

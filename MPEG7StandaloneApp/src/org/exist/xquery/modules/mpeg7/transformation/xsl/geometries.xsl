@@ -1,5 +1,5 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="urn:mpeg:mpeg7:schema:2001" xmlns:mpeg7="urn:mpeg:mpeg7:schema:2001" xmlns:str="http://exslt.org/strings" xmlns:functx="http://www.functx.com" xmlns:math="http://exslt.org/math" xmlns:xalan="http://xml.apache.org/xalan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="urn:mpeg:mpeg7:schema:2001 Mpeg7-2001.xsd">
-    <xsl:import href="geometry_helpers.xsl" xml:base="."/>
+    <xsl:import href="geometry_helpers.xsl" xml:base="http://54.72.206.163/exist/apps/annotation/modules/"/>
     <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>    
     <xsl:param name="IFSPointsExtraction"/>
     <xsl:param name="ILSPointsExtraction"/>
@@ -482,9 +482,9 @@
         <xsl:variable name="SURFParts" select="tokenize(tokenize($SURFDescrs,':')[last()],';')"/>        
         <Descriptor xsi:type="SURFeaturesType">               
             <Vocabulary size="{$SURFParts[1]}" location="{concat('Vocabularies/SURF/Vocab',$SURFParts[1],'.iVocab')}"/>
-            <BagOfSURF>                       
+            <IntensityStructure>                       
                 <xsl:value-of select="$SURFParts[last()]"/>                
-            </BagOfSURF>
+            </IntensityStructure>
         </Descriptor>        
     </xsl:template>
 </xsl:stylesheet>
