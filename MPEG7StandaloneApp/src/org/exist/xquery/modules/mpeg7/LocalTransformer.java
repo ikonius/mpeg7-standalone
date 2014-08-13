@@ -34,12 +34,12 @@ public class LocalTransformer {
             inputX3DFile = args[1];
             outputPath = args[2];
         } else {
-            inputX3DPath = "C:\\";//E:\\X3D\\content\\ToUpload\\";
-            inputX3DFile = "testShapeGoogle.x3d";
+            inputX3DPath = "E:\\X3D\\content\\ToUpload\\Savage\\AircraftFixedWing\\AV8B-Harrier-UnitedStates\\";//E:\\X3D\\content\\ToUpload\\";
+            inputX3DFile = "AV8bHarrier.x3d";
             outputPath = ""; //IF LEFT BLANK IT WILL BE STORED IN THE PROJECT CLASSPATH!!!!! - Otherwise use something like: //"E:\\X3D\\content\\examples\\Vrml2.0Sourcebook\\Chapter13-PointsLinesFaces\\";
         }
         try {
-
+         
             X3DResourceDetail resource = new X3DResourceDetail(removeExtension(inputX3DFile), inputX3DFile, inputX3DPath);
 
             String xslSource = "mpeg7_annotation.xsl";

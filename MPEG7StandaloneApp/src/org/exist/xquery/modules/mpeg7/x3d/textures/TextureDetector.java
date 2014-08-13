@@ -1,14 +1,22 @@
 package org.exist.xquery.modules.mpeg7.x3d.textures;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.SecureRandom;
+import java.security.Security;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.imageio.ImageIO;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
@@ -68,8 +76,8 @@ public class TextureDetector {
     public HashMap<String, String> getScalableColors() {
         return scalableColors;
     }
-    
-       public HashMap<String, String> getSURF() {
+
+    public HashMap<String, String> getSURF() {
         return surfeatures;
     }
 
@@ -100,8 +108,9 @@ public class TextureDetector {
                     String urlParams[] = textureNode.getAttribute("url").replaceAll("\"", "").split(" ");
                     for (String urlParam : urlParams) {
                         UrlValidator urlValidator = new UrlValidator();
+
                         if (!urlValidator.isValid(urlParam)) {
-                            textureUrls.add(basePath + "/" + urlParam);
+                            textureUrls.add(basePath + urlParam);
                         } else {
                             URL url = new URL(urlParam);
                             textureUrls.add(url.toString());
@@ -136,6 +145,9 @@ public class TextureDetector {
     }
 
     private void extractFeatures() {
+        System.setProperty("java.protocol.handler.pkgs",
+                "com.sun.net.ssl.internal.www.protocol");
+        Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
         histograms = new HashMap<String, String>();
         scalableColors = new HashMap<String, String>();
         surfeatures = new HashMap<String, String>();
@@ -151,8 +163,39 @@ public class TextureDetector {
             int urlSize = textureUrls.size();
             for (int i = 0; i < urlSize; i++) {
                 String textureUrl = textureUrls.get(i);
-                try {
-                    BufferedImage img = ImageIO.read(new URL(textureUrl.toString()));
+                BufferedImage img;
+                try {                   
+                    UrlValidator urlValidator = new UrlValidator();
+
+                    if (!urlValidator.isValid(textureUrl.toString())) {
+                        img = ImageIO.read(new File(textureUrl.toString()));
+                    } else {
+                        URL url = new URL(textureUrl.toString());
+                            // Create a trust manager that does not validate certificate chains
+                        TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+                            public X509Certificate[] getAcceptedIssuers() {
+                                return null;
+                            }
+
+                            public void checkClientTrusted(X509Certificate[] certs, String authType) {
+                            }
+
+                            public void checkServerTrusted(X509Certificate[] certs, String authType) {
+                            }
+                        }};
+
+                        // Install the all-trusting trust manager
+                        try {
+                            SSLContext sc = SSLContext.getInstance("TLS");
+                            sc.init(null, trustAllCerts, new SecureRandom());
+                            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+                        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+                        img = ImageIO.read(connection.getInputStream());
+                    }
+
                     //EHD
                     EdgeHistogramImplementation ehdi = new EdgeHistogramImplementation(img);
                     String bins = ehdi.getStringRepresentation().split(";")[1];
@@ -182,7 +225,7 @@ public class TextureDetector {
                     //SURF
                     SURFDescriptor surf = new SURFDescriptor(img, 64);
                     String histogram = surf.getStringRepresentation();
-                    
+
                     textureSURFBuilder.append(shapeName);
                     textureSURFBuilder.append(':');
                     textureSURFBuilder.append(histogram);
